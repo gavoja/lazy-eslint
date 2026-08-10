@@ -277,7 +277,7 @@ const CONFIG = [
 ]
 
 // Must be a function to get the .gitignore from the import stack.
-export default function getConfig () {
+export default function getConfig (custom = {}) {
   // Get .gitconfig from import stack.
   const originalPrepare = Error.prepareStackTrace
   Error.prepareStackTrace = (_, stack) => stack
@@ -299,5 +299,5 @@ export default function getConfig () {
     }
   }
 
-  return [{ ignores }, ...CONFIG]
+  return [custom, { ignores }, ...CONFIG]
 }
