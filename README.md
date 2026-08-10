@@ -1,0 +1,3 @@
+# Lazy ESLint
+
+WIP
