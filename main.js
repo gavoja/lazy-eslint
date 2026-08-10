@@ -285,19 +285,20 @@ export default function getConfig (custom = {}) {
   const stack = error.stack.map(frame => frame.getFileName())
   Error.prepareStackTrace = originalPrepare
 
-  const ignores = ['package-lock.json']
+  const ignores = new Set([
+    '**/node_modules/**',
+    'package-lock.json'
+  ])
   const importPath = fileURLToPath(stack[1])
   const gitignorePath = path.resolve(importPath, '../.gitignore')
 
   if (fs.existsSync(gitignorePath)) {
-    const gitignoreContent = fs.readFileSync(gitignorePath, 'utf-8')
-    for (const line of gitignoreContent.split('\n')) {
-      if (line.trim() && !line.startsWith('#')) {
-        const pattern = gitignoreToMinimatch(line.trim())
-        ignores.push(pattern)
-      }
-    }
+    fs.readFileSync(gitignorePath, 'utf-8')
+      .split('\n')
+      .map(line => line.trim())
+      .filter(line => line)
+      .forEach(item => ignores.add(gitignoreToMinimatch(item)))
   }
 
-  return [custom, { ignores }, ...CONFIG]
+  return [custom, { ignores: [...ignores] }, ...CONFIG]
 }
