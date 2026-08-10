@@ -1,0 +1,8 @@
+.env
+.vscode
+.VSCodeCounter
+.rumdl_cache
+node
+node_modules
+target
+dist

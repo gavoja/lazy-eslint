@@ -1,0 +1,21 @@
+{
+  "$schema": "https://unpkg.com/release-it@18/schema/release-it.json",
+  "git": {
+    "commit": true,
+    "push": true,
+    "tag": true,
+    "commitMessage": "chore: release v${version}"
+  },
+  "github": {
+    "release": true,
+    "tokenRef": "GITHUB_TOKEN_LAZY_ESLINT"
+  },
+  "npm": {
+    "publish": true
+  },
+  "hooks": {
+    "before:init": [
+      "npm run lint"
+    ]
+  }
+}

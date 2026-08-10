@@ -1,0 +1,42 @@
+{
+  "name": "lazy-eslint",
+  "version": "0.1.0",
+  "description": "npm",
+  "keywords": [
+    "ESLint"
+  ],
+  "homepage": "https://github.com/gavoja/lazy-eslint#readme",
+  "bugs": {
+    "url": "https://github.com/gavoja/lazy-eslint/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gavoja/lazy-eslint.git"
+  },
+  "license": "MIT",
+  "author": "Michal Kochel",
+  "type": "module",
+  "main": "./main.js",
+  "exports": {
+    ".": "./main.js"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "@eslint/js": "^10.0.1",
+    "@humanwhocodes/gitignore-to-minimatch": "^1.0.2",
+    "eslint-plugin-jsonc": "^3.4.1",
+    "eslint-plugin-n": "^18.2.2",
+    "eslint-plugin-promise": "^7.3.0",
+    "eslint-plugin-sonarjs": "^4.2.0",
+    "globals": "^17.9.0"
+  },
+  "peerDependencies": {
+    "eslint": "^10.8.0"
+  },
+  "devDependencies": {
+    "dotenv": "^17.4.2",
+    "release-it": "^21.0.2"
+  }
+}
