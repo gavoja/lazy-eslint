@@ -22,16 +22,16 @@ const CONFIG = [
       ...js.configs.recommended.languageOptions,
       globals: {
         ...globals.browser,
-        ...globals.node
-      }
+        ...globals.node,
+      },
     },
     plugins: {
       ...sonarjs.configs.recommended.plugins,
       n,
-      promise
+      promise,
     },
     settings: {
-      ...sonarjs.configs.recommended.settings
+      ...sonarjs.configs.recommended.settings,
     },
     rules: {
       // StandardJS rules.
@@ -42,7 +42,7 @@ const CONFIG = [
       'array-bracket-spacing': ['error', 'never'],
       'array-callback-return': ['error', {
         allowImplicit: false,
-        checkForEach: false
+        checkForEach: false,
       }],
       'arrow-spacing': ['error', { before: true, after: true }],
       'block-spacing': ['error', 'always'],
@@ -50,15 +50,9 @@ const CONFIG = [
       camelcase: ['error', {
         allow: ['^UNSAFE_'],
         properties: 'never',
-        ignoreGlobals: true
+        ignoreGlobals: true,
       }],
-      'comma-dangle': ['error', {
-        arrays: 'never',
-        objects: 'never',
-        imports: 'never',
-        exports: 'never',
-        functions: 'never'
-      }],
+      'comma-dangle': ['error', 'always-multiline'],
       'comma-spacing': ['error', { before: false, after: true }],
       'comma-style': ['error', 'last'],
       'computed-property-spacing': ['error', 'never', { enforceForClassMembers: true }],
@@ -101,9 +95,9 @@ const CONFIG = [
           'JSXClosingFragment',
           'JSXText',
           'JSXEmptyExpression',
-          'JSXSpreadChild'
+          'JSXSpreadChild',
         ],
-        offsetTernaryExpressions: true
+        offsetTernaryExpressions: true,
       }],
       'key-spacing': ['error', { beforeColon: false, afterColon: true }],
       'keyword-spacing': ['error', { before: true, after: true }],
@@ -156,9 +150,9 @@ const CONFIG = [
         groups: [
           ['==', '!=', '===', '!==', '>', '>=', '<', '<='],
           ['&&', '||'],
-          ['in', 'instanceof']
+          ['in', 'instanceof'],
         ],
-        allowSamePrecedence: true
+        allowSamePrecedence: true,
       }],
       'no-mixed-spaces-and-tabs': 'error',
       'no-multi-spaces': 'error',
@@ -198,13 +192,13 @@ const CONFIG = [
       'no-unused-expressions': ['error', {
         allowShortCircuit: true,
         allowTernary: true,
-        allowTaggedTemplates: true
+        allowTaggedTemplates: true,
       }],
       'no-unused-vars': ['error', {
         args: 'none',
         caughtErrors: 'none',
         ignoreRestSiblings: true,
-        vars: 'all'
+        vars: 'all',
       }],
       'no-use-before-define': ['error', { functions: false, classes: false, variables: false }],
       'no-useless-call': 'error',
@@ -237,7 +231,7 @@ const CONFIG = [
       'space-unary-ops': ['error', { words: true, nonwords: false }],
       'spaced-comment': ['error', 'always', {
         line: { markers: ['*package', '!', '/', ',', '='] },
-        block: { balanced: true, markers: ['*package', '!', ',', ':', '::', 'flow-include'], exceptions: ['*'] }
+        block: { balanced: true, markers: ['*package', '!', ',', ':', '::', 'flow-include'], exceptions: ['*'] },
       }],
       'symbol-description': 'error',
       'template-curly-spacing': ['error', 'never'],
@@ -245,7 +239,7 @@ const CONFIG = [
       'unicode-bom': ['error', 'never'],
       'use-isnan': ['error', {
         enforceForSwitchCase: true,
-        enforceForIndexOf: true
+        enforceForIndexOf: true,
       }],
       'valid-typeof': ['error', { requireStringLiterals: true }],
       'wrap-iife': ['error', 'any', { functionPrototypeMethods: true }],
@@ -262,8 +256,8 @@ const CONFIG = [
 
       // Sonar rules.
       ...sonarjs.configs.recommended.rules,
-      'sonarjs/todo-tag': 'off' // Allow TODO sections in the code. It is useful.
-    }
+      'sonarjs/todo-tag': 'off', // Allow TODO sections in the code. It is useful.
+    },
   },
   // Add JSON rules.
   ...jsonc.configs['flat/recommended-with-jsonc'].map(config => config.files ? config : { ...config, files: FILES_JSON }),
@@ -271,9 +265,9 @@ const CONFIG = [
     files: FILES_JSON,
     rules: {
       'jsonc/indent': ['error', 2],
-      'jsonc/comma-dangle': ['error', 'never']
-    }
-  }
+      'jsonc/comma-dangle': ['error', 'never'],
+    },
+  },
 ]
 
 // Must be a function to get the .gitignore from the import stack.
@@ -287,7 +281,7 @@ export default function getConfig (custom = {}) {
 
   const ignores = new Set([
     '**/node_modules/**',
-    'package-lock.json'
+    'package-lock.json',
   ])
   const importPath = fileURLToPath(stack[1])
   const gitignorePath = path.resolve(importPath, '../.gitignore')
